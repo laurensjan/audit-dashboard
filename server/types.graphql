@@ -1,0 +1,56 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type User @model {
+  id: ID! @isUnique
+  name: String
+}
+
+
+type Process @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+  
+  ref: String
+  title: String!
+  description: String
+  
+  subprocesses: [Subprocess!]! @relation(name: "ProcessSubprocesses")
+}
+
+type Subprocess @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  subprocesses: [Control!]! @relation(name: "SubprocessControls")
+  process: Process! @relation(name: "ProcessSubprocesses")
+}
+
+type Control @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  subprocess: Subprocess! @relation(name: "SubprocessControls")
+  riskAssesment: RiskAssessment! @relation(name: "ControlRiskAssessment")
+}
+
+type RiskAssessment @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  score1: Int!
+  score2: Int!
+  score3: Int!
+  score4: Int!
+  score5: Int!
+  score6: Int!
+  score7: Int!
+  control: Control! @relation(name: "ControlRiskAssessment")
+}
+
