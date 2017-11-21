@@ -61,6 +61,14 @@ Vue.use(VueMaterial)
 
 Vue.config.productionTip = false
 
+Vue.filter('truncate', function (value, length) {
+  let suffix = ''
+  if (!value) return ''
+  if (!length > 0) length = 20
+  if (value.length > length) suffix = '...'
+  return value.substring(0, length) + suffix
+})
+
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
   defaultOptions: {

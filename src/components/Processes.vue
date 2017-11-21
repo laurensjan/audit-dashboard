@@ -53,7 +53,7 @@
       @md-cancel="idToDelete = null"
       @md-confirm="deleteProcess" />
 
-    <md-button class="md-fab md-primary md-fab-bottom-right" @click="showDialog = true">
+    <md-button class="md-fab md-primary md-fab-bottom-right md-fixed" @click="showDialog = true">
       <md-icon>add</md-icon>
     </md-button>
     

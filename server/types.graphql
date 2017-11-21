@@ -24,7 +24,11 @@ type Subprocess @model {
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
 
-  name: String!
+  ref: String
+  title: String!
+  description: String
+  controlObjective: String
+  
   subprocesses: [Control!]! @relation(name: "SubprocessControls")
   process: Process! @relation(name: "ProcessSubprocesses")
 }

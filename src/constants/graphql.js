@@ -39,3 +39,47 @@ export const DELETE_PROCESS_MUTATION = gql`
     }
   }
 `
+
+export const ALL_SUBPROCESSES_QUERY = gql`
+  query AllSubprocessesQuery {
+    allSubprocesses {
+      id
+      ref
+      title
+      description
+      controlObjective
+    }
+  }
+`
+
+export const CREATE_SUBPROCESS_MUTATION = gql`
+  mutation CreateSubprocessMutation($process: ID!, $ref: String, $title: String!, $description: String, $controlObjective: String) {
+    createSubprocess(
+      processId: $process
+      ref: $ref
+      title: $title
+      description: $description
+      controlObjective: $controlObjective
+    ) {
+      id
+      createdAt
+      ref
+      title
+      description
+      controlObjective
+    }
+  }
+`
+
+export const DELETE_SUBPROCESS_MUTATION = gql`
+  mutation DeleteSubprocessMutation($id: ID!) {
+    deleteSubprocess(
+      id: $id
+    ) {
+      id
+      ref
+      title
+      description
+    }
+  }
+`
